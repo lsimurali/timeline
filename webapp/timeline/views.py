@@ -130,8 +130,7 @@ def commentAdd(request):
             tch.comment=form.cleaned_data['comment']
             tch.save()
             return redirect('Dashboard')
-    return render(request,'Dashboard.html',{'form':form})
-
+    return render(request,'Dashboard.html',{'form':form , 'msg': 'Post Added Suceesfully'})
 
 
 
