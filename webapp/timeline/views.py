@@ -126,7 +126,7 @@ def commentAdd(request):
             #form.save()
             tch=Comment()
             tch.post=form.cleaned_data['post']
-            tch.comment_by=form.cleaned_data['commented_by']
+            tch.person=form.cleaned_data['commented_by']
             tch.comment=form.cleaned_data['comment']
             tch.save()
             return redirect('Dashboard')
