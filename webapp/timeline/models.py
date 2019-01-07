@@ -27,4 +27,18 @@ class Like(models.Model):
     like = models.ForeignKey(User,on_delete=models.CASCADE)
     status = models.BooleanField(null=True)
 
+    class Meta():
+        db_table = 'Like'
+
+
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Document,on_delete=models.CASCADE)
+    comment_by = models.ForeignKey(User,on_delete=models.CASCADE)
+    comment = models.CharField(max_length=250)
+
+    class Meta():
+        db_table = 'Comment'
+
 

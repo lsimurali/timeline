@@ -1,6 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from timeline.models import posts,Document,User,Like
+from timeline.models import posts,Document,User,Like,Comment
 
 class loginForm(forms.Form):
     username=forms.CharField(max_length=50)
@@ -19,12 +19,6 @@ class DocumentForm(forms.ModelForm):
     class Meta:
         model = Document
         fields = ('title','description', 'document', )
-
-
-# class LikeForm(forms.ModelForm):
-#     class Meta:
-#         model = Like
-
 
 
 

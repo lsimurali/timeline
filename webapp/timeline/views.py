@@ -5,7 +5,7 @@ from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from timeline.forms import loginForm,addPost,DocumentForm
-from timeline.models import posts,Document,Like
+from timeline.models import posts,Document,Like,Comment
 
 
 
@@ -75,8 +75,22 @@ def Signout(request):
 
 
 
-#Create posts form
 
+@login_required(login_url='/signin')
+def model_form_upload(request):
+    if request.method == 'POST':
+        form = DocumentForm\
+            (request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('dashBoard')
+    else:
+        form = DocumentForm()
+    return render(request, 'model_form_upload.html', {
+        'form': form ,'msg': 'Post Added Suceesfully'
+    })
+
+#Create posts form
 #@login_required(login_url='/signin')
 def addPosts(request):
     if request.user.is_authenticated:
@@ -95,24 +109,30 @@ def addPosts(request):
     else:
         return redirect('Signin')
 
-
-
-
-@login_required(login_url='/signin')
-def model_form_upload(request):
-    if request.method == 'POST':
-        form = DocumentForm\
-            (request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('dashBoard')
-    else:
-        form = DocumentForm()
-    return render(request, 'model_form_upload.html', {
-        'form': form ,'msg': 'Post Added Suceesfully'
-    })
-
-
-
-def like(request, pk):
+def like(request):
+    logout(request)
+    for k in request.session.keys():
+        del request.session[k]
     return redirect('Signin')
+
+
+
+# #Create form
+# def commentAdd(request):
+#     form = CommentForm()
+#     if request.method == "POST":
+#         form = CommentForm(request.POST)
+#         if form.is_valid():
+#             #form.save()
+#             tch=Comment()
+#             tch.post=form.cleaned_data['post']
+#             tch.comment_by=form.cleaned_data['commented_by']
+#             tch.comment=form.cleaned_data['comment']
+#             tch.save()
+#             return redirect('Dashboard')
+#     return render(request,'Dashboard.html',{'form':form})
+
+
+
+
+

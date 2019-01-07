@@ -26,11 +26,24 @@
         <small>(Uploaded at: {{ obj.uploaded_at }})<small/><br>
         <img src=" {{ obj.document.url }} " height="312px" width="820px" >
 
-            <form action="like ">
+            <form name="likeform" action="like ">
                 <input type="hidden" value="{{ obj.id }}">
                 <input type="hidden" value="{{ request.user.id }} ">
                 <input type="submit" value="Like">
             </form>
+
+
+            <form name="commentform" action="comment ">
+              <input type="hidden" value="{{ obj.id }}">
+              <input type="hidden" value="{{ request.user.id }} ">
+              <input type="text"
+              cols="40" 
+              rows="5" 
+              style="width:200px; height:50px;" 
+              name="commentbox" 
+              value="" />
+              <input type="submit" value="Comment">
+          </form>
 
            <!-- <span><a href="like/{{ obj.id }}" class="btn btnprimary btn-sm like">Like</a> </span> -->
        <!-- <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>-->
