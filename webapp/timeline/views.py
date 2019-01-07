@@ -4,7 +4,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from timeline.forms import loginForm,addPost,DocumentForm
+from timeline.forms import loginForm,addPost,DocumentForm,CommentForm
 from timeline.models import posts,Document,Like,Comment
 
 
@@ -117,20 +117,20 @@ def like(request):
 
 
 
-# #Create form
-# def commentAdd(request):
-#     form = CommentForm()
-#     if request.method == "POST":
-#         form = CommentForm(request.POST)
-#         if form.is_valid():
-#             #form.save()
-#             tch=Comment()
-#             tch.post=form.cleaned_data['post']
-#             tch.comment_by=form.cleaned_data['commented_by']
-#             tch.comment=form.cleaned_data['comment']
-#             tch.save()
-#             return redirect('Dashboard')
-#     return render(request,'Dashboard.html',{'form':form})
+#Create form
+def commentAdd(request):
+    form = CommentForm()
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            #form.save()
+            tch=Comment()
+            tch.post=form.cleaned_data['post']
+            tch.comment_by=form.cleaned_data['commented_by']
+            tch.comment=form.cleaned_data['comment']
+            tch.save()
+            return redirect('Dashboard')
+    return render(request,'Dashboard.html',{'form':form})
 
 
 
