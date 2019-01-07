@@ -24,7 +24,7 @@ class Document(models.Model):
 
 class Like(models.Model):
     post = models.ForeignKey(Document,on_delete=models.CASCADE)
-    like = models.ForeignKey(User,on_delete=models.CASCADE)
+    person = models.ForeignKey(User,on_delete=models.CASCADE)
     status = models.BooleanField(null=True)
 
     class Meta():
@@ -35,7 +35,7 @@ class Like(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey(Document,on_delete=models.CASCADE)
-    comment_by = models.ForeignKey(User,on_delete=models.CASCADE)
+    person = models.ForeignKey(User,on_delete=models.CASCADE)
     comment = models.CharField(max_length=250)
 
     class Meta():
