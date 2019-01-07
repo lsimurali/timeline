@@ -14,7 +14,7 @@ urlpatterns=[
     url(r'^signout$',views.Signout,name="Signout"),
     # url(r'^addPosts$',views.addPosts,name='addPosts'),
     url(r'^addPosts$',views.model_form_upload,name='addPosts'),
-    # url(r'^like$',views.like,name='like'),
+    url(r'^like$',views.like,name='like'),
     url(r'^comment$',views.commentAdd,name='comment'),
 
 

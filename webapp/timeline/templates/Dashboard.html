@@ -55,13 +55,17 @@
 
         
 
-    {% for com in comment %}
+      {% for com in comment %}
+         <div  style="border: 2px solid Tomato;"> 
+          {% if com.post_id == obj.id  %}
 
-    {% if com.post_id == obj.id  %}
+          <div><font color= "green"  style=" font-size: 15px;background-color:DodgerBlue;">{{ com.person }}</font></div> 
+          <p >{{ com.comment }}</p>
+         <!-- </font><font color= "blue"  style="font-size:40px;"><p></p></font></div>  -->
 
-  <h6>{{ com.person }}</h6>  <p>{{ com.comment }}</p>
+          {% endif %}
 
-    {% endif %}
+         </div>
     {% endfor %}
 
            <!-- <span><a href="like/{{ obj.id }}" class="btn btnprimary btn-sm like">Like</a> </span> -->
