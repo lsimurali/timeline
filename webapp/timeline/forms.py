@@ -21,4 +21,7 @@ class DocumentForm(forms.ModelForm):
         fields = ('title','description', 'document', )
 
 
-
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('commented_by','postid','comment',)

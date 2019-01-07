@@ -27,6 +27,8 @@
         <img src=" {{ obj.document.url }} " height="312px" width="820px" >
 
             <form name="likeform" action="like ">
+                {% csrf_token %}
+                {{ form | crispy }}
                 <input type="hidden" value="{{ obj.id }}">
                 <input type="hidden" value="{{ request.user.id }} ">
                 <input type="submit" value="Like">
@@ -34,6 +36,8 @@
 
 
             <form name="commentform" action="comment ">
+                {% csrf_token %}
+                {{ form | crispy }}
               <input type="hidden" value="{{ obj.id }}">
               <input type="hidden" value="{{ request.user.id }} ">
               <input type="text"
@@ -44,6 +48,11 @@
               value="" />
               <input type="submit" value="Comment">
           </form>
+
+
+
+
+
 
            <!-- <span><a href="like/{{ obj.id }}" class="btn btnprimary btn-sm like">Like</a> </span> -->
        <!-- <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>-->
