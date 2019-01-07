@@ -1,0 +1,9 @@
+add comments to database it's itrating  
+ 
+Syndax -
+insert into Comment values (id,command,person-Id,Post id)
+
+
+example -
+
+ insert into Comment values(4,"post3 2nd command",2,1);
