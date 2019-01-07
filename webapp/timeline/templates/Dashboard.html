@@ -1,3 +1,11 @@
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+
+
 {% extends 'header.html' %}
 {% load crispy_forms_tags %}
 
@@ -11,12 +19,7 @@
 <h2>{{ request.user.id }} </h2>-<h2>Welcome {{ request.user.username }}</h2>
 
 <title>Timeline</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
+  
     {% for obj in documents %}
       <li>
         <h1>{{ obj.title }}</h1>
@@ -35,11 +38,11 @@
             </form>
 
 
-            <form name="commentform" action="comment ">
+            <form name="commentForm" action="comment ">
                 {% csrf_token %}
                 {{ form | crispy }}
-              <input type="hidden" value="{{ obj.id }}">
-              <input type="hidden" value="{{ request.user.id }} ">
+              <input type="hidden" value="{{ obj.id }}" name="post">
+              <input type="hidden" value="{{ request.user.id }}" name="commented_by">
               <input type="text"
               cols="40" 
               rows="5" 
@@ -49,10 +52,16 @@
               <input type="submit" value="Comment">
           </form>
 
+        
 
+    {% for com in comment %}
 
+    {% if com.post_id == obj.id  %}
 
+  <h6>{{ com.person }}</h6>  <p>{{ com.comment }}</p>
 
+    {% endif %}
+    {% endfor %}
 
            <!-- <span><a href="like/{{ obj.id }}" class="btn btnprimary btn-sm like">Like</a> </span> -->
        <!-- <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>-->

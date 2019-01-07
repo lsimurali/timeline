@@ -60,8 +60,9 @@ def Signin(request):
 #@login_required(login_url='/signin')
 def dashBoard(request):
     if request.user.is_authenticated:
+        comment = Comment.objects.all()
         documents = Document.objects.all()
-        return render(request, 'Dashboard.html', {'documents': documents})
+        return render(request, 'Dashboard.html', {'documents': documents,'comment': comment})
     else:
         return redirect('Signin')
 
@@ -130,8 +131,6 @@ def commentAdd(request):
             tch.comment=form.cleaned_data['comment']
             tch.save()
             return redirect('Dashboard')
-    return render(request,'Dashboard.html',{'form':form , 'msg': 'Post Added Suceesfully'})
-
-
+    return render(request,'Dashboard.html')
 
 
