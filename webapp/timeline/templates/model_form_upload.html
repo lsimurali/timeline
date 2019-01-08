@@ -10,7 +10,7 @@
     <input name="author" type="hidden" value=" {{ request.user.id }} ">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Upload</button>
+    <button type="submit">Post Now</button>
   </form>
 
   {% endif %}
