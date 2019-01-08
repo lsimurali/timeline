@@ -106,17 +106,17 @@ def addPosts(request):
                 add.image_url = form.cleaned_data['image_url']
                 add.save()
                 return redirect('dashBoard')
-            return render(request,'Dashboard.html',{'form':form , 'msg': 'Post Added Suceesfully'})
+        return render(request,'Dashboard.html',{'form':form , 'msg': 'Post Added Suceesfully'})
     else:
         return redirect('Signin')
 
 def like(request):
-    logout(request)
-    for k in request.session.keys():
-        del request.session[k]
-    return redirect('Signin')
+    pass
+    return redirect('dashBoard')
 
+    
 
+   
 
 #Create form
 def commentAdd(request):

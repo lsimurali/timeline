@@ -35,7 +35,8 @@
                 {{ form | crispy }}
                 <input type="hidden" value="{{ obj.id }}">
                 <input type="hidden" value="{{ request.user.id }} ">
-                <input type="submit" value="Like">
+                <!-- <input type="submit" value="Like"> -->
+                <button type="submit" value="{{ obj.id }}" class="btn btn-primary">Like</button>
             </form>
 
 
@@ -47,7 +48,7 @@
               <input type="text"
               cols="40" 
               rows="5" 
-              style="width:700px; height:35px;" 
+              style="width:650px; height:35px;" 
               name="commentbox" 
               value="" />
               <input type="submit" value="Comment">
