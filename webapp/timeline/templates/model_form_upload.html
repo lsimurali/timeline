@@ -1,9 +1,18 @@
 {% extends 'header.html' %}
 
 {% block content %}
+
+{% if request.user.username %}
+
+<h2>Add your post   {{ request.user.username }}</h2>
+
   <form method="post" enctype="multipart/form-data">
+    <input name="author" type="hidden" value=" {{ request.user.id }} ">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Upload</button>
   </form>
+
+  {% endif %}
+
 {% endblock %}

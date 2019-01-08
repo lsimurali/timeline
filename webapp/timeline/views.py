@@ -106,7 +106,7 @@ def addPosts(request):
                 add.image_url = form.cleaned_data['image_url']
                 add.save()
                 return redirect('dashBoard')
-        return render(request,'Dashboard.html',{'form':form , 'msg': 'Post Added Suceesfully'})
+            return render(request,'Dashboard.html',{'form':form , 'msg': 'Post Added Suceesfully'})
     else:
         return redirect('Signin')
 
