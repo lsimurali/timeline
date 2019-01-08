@@ -40,10 +40,9 @@
             </form>
 
 
-            <form name="commentForm" action="comment ">
+            <form name="commentForm" >
                 {% csrf_token %}
                 {{ form | crispy }}
-              <input type="hidden" value="{{ obj.id }}" name="post">
               <input type="hidden" value="{{ request.user.id }}" name="commented_by">
               <input type="text"
               cols="40" 
@@ -51,7 +50,7 @@
               style="width:650px; height:35px;" 
               name="commentbox" 
               value="" />
-              <input type="submit" value="Comment">
+              <span><a href="comment/{{ obj.id }}" class="btn btnprimary "> Post Comment</a> </span>
           </form>
 
         
