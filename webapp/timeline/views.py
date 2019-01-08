@@ -91,9 +91,24 @@ def model_form_upload(request):
         'form': form ,'msg': 'Post Added Suceesfully'
     })
 
-
-
-
+#Create posts form
+#@login_required(login_url='/signin')
+def addPosts(request):
+    if request.user.is_authenticated:
+        form = addPost()
+        if request.method == "POST":
+            form = addPost(request.POST)
+            if form.is_valid():
+                #form.save()
+                add = posts()
+                add.title = form.cleaned_data['title']
+                add.description = form.cleaned_data['description']
+                add.image_url = form.cleaned_data['image_url']
+                add.save()
+                return redirect('dashBoard')
+        return render(request,'Dashboard.html',{'form':form , 'msg': 'Post Added Suceesfully'})
+    else:
+        return redirect('Signin')
 
 def like(request):
     pass

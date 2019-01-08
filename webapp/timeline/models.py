@@ -25,7 +25,7 @@ class Document(models.Model):
 class Like(models.Model):
     post = models.ForeignKey(Document,on_delete=models.CASCADE)
     person = models.ForeignKey(User,on_delete=models.CASCADE)
-    status = models.BooleanField(null=True)
+    status = models.BooleanField()
 
     class Meta():
         db_table = 'Like'
@@ -40,5 +40,3 @@ class Comment(models.Model):
 
     class Meta():
         db_table = 'Comment'
-
-
